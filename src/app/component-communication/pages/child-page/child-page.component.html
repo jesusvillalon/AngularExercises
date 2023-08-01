@@ -1,0 +1,17 @@
+<div id="child" class="row mt-5">
+  <h2 class="mt-3">CHILD</h2>
+  <div class="col text-center p-3">
+    <p>message: {{message}}</p>
+    <div >
+      <button
+      (click)="showServiceMessage()"
+      class="btn btn-primary ">Use Service</button>
+      <button
+      (click)="showOutputMessage()"
+      class="btn btn-primary m-3">Use Output Event</button>
+      <button
+      (click)="showChildObservableMessage()"
+      class="btn btn-primary">Use Observable</button>
+    </div>
+  </div>
+</div>
