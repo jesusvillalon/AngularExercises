@@ -17,8 +17,8 @@
       <td>{{user.country}}</td>
       <td>{{user.city | titlecase}}</td>
       <td class="buttons">
-        <button >🖊</button>
-        <button (click)="deleteUserById(user.id)">🗑</button>
+        <button (click)="editUser()">🖊</button>
+        <button (click)="deleteUser()">🗑</button>
       </td>
 
     </tr>

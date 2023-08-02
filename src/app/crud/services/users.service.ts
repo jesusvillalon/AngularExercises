@@ -1,36 +1,50 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Users } from '../interfaces/users.interface';
-import { v4 as uuid } from 'uuid';
-import { Subject } from 'rxjs';
+import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
+import { environments } from 'src/environments/environments.prod';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  private users: Users[] = [];
-  private usersSubject: Subject<Users[]> = new Subject<Users[]>();
+  private baseUrl: string = environments.baseUrl;
+  public userAdded = new Subject<Users>();
 
+  constructor(private http: HttpClient) {}
 
-  constructor() {}
-
-
-  addUser(user: Users) {
-    const newUser: Users = { ...user, id: uuid() };
-    this.users.push(newUser);
-    this.usersSubject.next(this.users);
+  getUsers(): Observable<Users[]> {
+    return this.http.get<Users[]>(`${this.baseUrl}/users`);
   }
 
-  getUsers(): Subject<Users[]> {
-    return this.usersSubject;
-  }
-
-  deleteUserById(id: string) {
-    this.users = this.users.filter((user) => user.id !== id);
+  getUserById(id: string): Observable<Users | undefined> {
+    return this.http.get<Users>(`${this.baseUrl}/users/${id}`)
+      .pipe(catchError((error) => of(undefined)));
   }
 
 
-  updateUser(updatedUser: Users) {
-    const index = this.users.findIndex((user) => user.id === updatedUser.id);
-    if (index !== -1) {
-      this.users[index] = updatedUser;
-    }
+  addUser(user: Users): Observable<Users> {
+    return this.http.post<Users>(`${this.baseUrl}/users`, user)
+      .pipe(
+        tap((addedUser) => {
+          this.userAdded.next(addedUser);
+        })
+      );
   }
+
+  getAddedUser(): Observable<Users> {
+    return this.userAdded.asObservable();
+  }
+
+  updateUser(user : Users): Observable<Users>{
+    if(!user.id) throw Error("User id is required");
+    return this.http.patch<Users>(`${this.baseUrl}/users/${user.id}`, user)
+  }
+
+  deleteUserById(id: string): Observable<boolean> {
+    return this.http.delete(`${this.baseUrl}/users/${id}`)
+      .pipe(
+        map(resp => true),
+        catchError(err => of(false))
+      )
+  }
+
 }

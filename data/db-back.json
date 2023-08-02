@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jesús Villalón",
+      "email": "jesus@google.com",
+      "isSubscribed": false,
+      "country": "Chile",
+      "city": "Santiago"
+    },
+    {
+      "id": 2,
+      "name": "María Beltrán",
+      "email": "maria@google.com",
+      "isSubscribed": false,
+      "country": "Spain",
+      "city": "Antequera"
+    },
+    {
+      "id": 3,
+      "name": "Fernando Herrera",
+      "email": "fernando@google.com",
+      "isSubscribed": false,
+      "country": "Canada",
+      "city": "Ottawa"
+    }
+  ]
+}

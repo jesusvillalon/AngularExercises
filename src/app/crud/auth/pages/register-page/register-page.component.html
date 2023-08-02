@@ -1,8 +1,8 @@
 <div class="row">
   <!-- Formulario de Registro -->
-  <div class="col-4">
+  <div class="col-4" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <h2>Formulario de Registro</h2>
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <form  autocomplete="off">
       <!-- Nombre Usuario -->
       <div class="mb-3">
         <label class="col-form-label">Nombre de usuario</label>
@@ -16,7 +16,7 @@
           <span
           *ngIf="isValidField('name')"
           class="form-text text-danger">
-            Debe de ser en formato de nombre y apellido
+          {{getFieldMessageError('name')}}
           </span>
         </div>
       </div>
@@ -104,9 +104,9 @@
             <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
           </select>
           <span
-          *ngIf="isValidField('email')"
+          *ngIf="isValidField('country')"
           class="form-text text-danger">
-           {{getFieldMessageError('email')}}
+           {{getFieldMessageError('country')}}
           </span>
         </div>
       </div>
@@ -138,7 +138,7 @@
   </div>
 
   <!-- Tabla -->
-  <div class="col-8">
+  <div class="col-8" >
     <h2>Usuarios</h2>
     <table-page />
   </div>

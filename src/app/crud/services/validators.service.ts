@@ -7,7 +7,6 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angu
 @Injectable({providedIn: 'root'})
 export class ValidatorsService {
 
-  public firstNameLastNamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   public cantBeStrider = (control: FormControl): ValidationErrors | null => {
@@ -25,6 +24,7 @@ export class ValidatorsService {
     && form.controls[field].touched
   }
 
+  // Verificamos si ambas contraseñas son iguales.
   public isConfirmedPassword(password1: string, password2: string) {
     return (formGroup: AbstractControl): ValidationErrors | null => {
       const passwordValue1 = formGroup.get(password1)?.value;

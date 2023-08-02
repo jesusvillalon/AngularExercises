@@ -1,27 +1,29 @@
-import { Users } from './../../../interfaces/users.interface';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Countries } from 'src/app/crud/interfaces/countries.interface';
 import { countries } from 'src/app/crud/interfaces/countries-data.interface';
 import { ValidatorsService } from 'src/app/crud/services/validators.service';
-import { EmailValidatorService } from 'src/app/crud/validators/email-validator.service';
 import { UsersService } from 'src/app/crud/services/users.service';
+import { Users } from 'src/app/crud/interfaces/users.interface';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+
 
 @Component({
   selector: 'register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css']
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnInit{
 
-  public myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern(this.validatorsService.firstNameLastNamePattern)]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-    email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)], [this.emailValidatorService]],
-    isSubscribed: [''],
-    country: ['', [Validators.required]],
-    city: ['', [Validators.required]],
+  public userForm: FormGroup = this.fb.group({
+    name: new FormControl<string>('', [Validators.required]),
+    password: new FormControl<string> ('', [Validators.required, Validators.minLength(6)]),
+    confirmPassword:new FormControl<string> ('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl<string> ('', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]),
+    isSubscribed: new FormControl<boolean>(false),
+    country: new FormControl<string>('', [Validators.required]),
+    city: new FormControl<string>('', [Validators.required]),
   },
   {
     validators: [
@@ -35,19 +37,33 @@ export class RegisterPageComponent {
   constructor(
     private fb: FormBuilder,
     private validatorsService: ValidatorsService,
-    private emailValidatorService: EmailValidatorService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private usersService: UsersService
   ) {}
 
+  ngOnInit(): void {
+    if(!this.router.url.includes("edit")) return;
 
-  isValidField(field: string) {
-    return this.validatorsService.isValidField(this.myForm, field)
+    this.activatedRoute.params
+      .pipe(switchMap(({id}) => this.usersService.getUserById(id)))
+      .subscribe((user) => {
+        if(!user) return this.router.navigateByUrl('/')
+        this.userForm.reset(user);
+        return;
+      })
+
   }
 
-  getFieldMessageError(field: string): string | null {
-    if(!this.myForm.controls[field]) return null;
+  isValidField(field: string) {
+    return this.validatorsService.isValidField(this.userForm, field)
+  }
 
-    const errors = this.myForm.controls[field].errors || {}
+  // Obtenemos el mensaje de error en caso de que el campo no haya sido rellenado.
+  getFieldMessageError(field: string): string | null {
+    if(!this.userForm.controls[field]) return null;
+
+    const errors = this.userForm.controls[field].errors || {}
     for (const key of Object.keys(errors)) {
       switch(key) {
         case "required":
@@ -59,18 +75,22 @@ export class RegisterPageComponent {
     return null
   }
 
-
-
-  onSubmit() {
-    this.myForm.markAllAsTouched();
-    if (this.myForm.valid) {
-      const user = this.myForm.value;
-      this.usersService.addUser(user);
-      this.myForm.reset();
-    }
+  get currentUser(): Users {
+    const user = this.userForm.value as Users;
+    return user;
   }
 
 
+  onSubmit() {
+    this.userForm.markAllAsTouched();
+    if(this.userForm.invalid) return;
+    if(this.currentUser.id){
+      this.usersService.updateUser(this.currentUser).subscribe();
+      return;
+    }
+    this.usersService.addUser(this.currentUser).subscribe((user) => {
 
-
+    })
+    this.userForm.reset()
+  }
 }
