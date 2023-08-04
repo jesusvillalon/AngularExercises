@@ -1,16 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Countries } from 'src/app/crud/interfaces/countries.interface';
 import { countries } from 'src/app/crud/interfaces/countries-data.interface';
 import { ValidatorsService } from 'src/app/crud/services/validators.service';
 import { UsersService } from 'src/app/crud/services/users.service';
 import { Users } from 'src/app/crud/interfaces/users.interface';
-import { EmailValidatorService } from 'src/app/crud/validators/email-validator.service';
+// import { EmailValidatorService } from 'src/app/crud/validators/email-validator.service';
 
 @Component({
   selector: 'register-page',
@@ -29,14 +24,10 @@ export class RegisterPageComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
-      email: new FormControl<string>(
-        '',
-        [
-          Validators.required,
-          Validators.pattern(this.validatorsService.emailPattern),
-        ],
-
-      ),
+      email: new FormControl<string>('', [
+        Validators.required,
+        Validators.pattern(this.validatorsService.emailPattern),
+      ]),
       isSubscribed: new FormControl<boolean>(false),
       country: new FormControl<string>('', [Validators.required]),
       city: new FormControl<string>('', [Validators.required]),
@@ -56,7 +47,6 @@ export class RegisterPageComponent implements OnInit {
   public user?: Users;
 
   public currentUserId?: number;
-
 
   constructor(
     private fb: FormBuilder,
@@ -98,7 +88,6 @@ export class RegisterPageComponent implements OnInit {
     return user;
   }
 
-
   onSubmit() {
     this.userForm.markAllAsTouched();
     if (this.userForm.invalid) return;
@@ -110,8 +99,7 @@ export class RegisterPageComponent implements OnInit {
       });
       return;
     }
-    this.usersService.addUser(this.currentUser).subscribe((user) => {
-    });
+    this.usersService.addUser(this.currentUser).subscribe((user) => {});
     this.userForm.reset();
   }
 }
