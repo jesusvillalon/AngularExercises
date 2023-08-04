@@ -7,10 +7,9 @@ const routes: Routes = [
   {
     path: "",
     children: [
-      {path:"register", component: RegisterPageComponent,
-      children:[
-        {path: "tablePage", component: TablePageComponent}
-      ]},
+      {path:"register", component: RegisterPageComponent},
+      {path: "register/:id", component: RegisterPageComponent},
+      {path: "tablePage", component: TablePageComponent},
       {path:"**", redirectTo: "register"},
     ]
   }

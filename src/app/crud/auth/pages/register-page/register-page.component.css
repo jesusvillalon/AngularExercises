@@ -1,7 +1,18 @@
+.crud{
+  display: flex;
+  justify-content: center;
+}
+form{
+  border: 1px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+}
 .custom-select {
   color: #999;
 }
-
 .custom-select option {
   color: #000;
 }
+

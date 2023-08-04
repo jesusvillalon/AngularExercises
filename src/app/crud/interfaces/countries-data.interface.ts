@@ -27,7 +27,7 @@ export const countries: Countries[] = [
     { code: "BJ", code3: "BEN", name: "Benin", number: "204" },
     { code: "BM", code3: "BMU", name: "Bermuda", number: "060" },
     { code: "BT", code3: "BTN", name: "Bhutan", number: "064" },
-    { code: "BO", code3: "BOL", name: "Bolivia (Plurinational State of)", number: "068" },
+    { code: "BO", code3: "BOL", name: "Bolivia", number: "068" },
     { code: "BQ", code3: "BES", name: "Bonaire, Sint Eustatius and Saba", number: "535" },
     { code: "BA", code3: "BIH", name: "Bosnia and Herzegovina", number: "070" },
     { code: "BW", code3: "BWA", name: "Botswana", number: "072" },

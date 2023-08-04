@@ -8,8 +8,11 @@ import { environments } from 'src/environments/environments.prod';
 export class UsersService {
   private baseUrl: string = environments.baseUrl;
   public userAdded = new Subject<Users>();
+  private userToUpdate = new Subject<Users>();
+
 
   constructor(private http: HttpClient) {}
+
 
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>(`${this.baseUrl}/users`);
@@ -34,16 +37,29 @@ export class UsersService {
     return this.userAdded.asObservable();
   }
 
-  updateUser(user : Users): Observable<Users>{
+  updateUser(user: Users): Observable<Users>{
     if(!user.id) throw Error("User id is required");
     return this.http.patch<Users>(`${this.baseUrl}/users/${user.id}`, user)
+      .pipe(
+        tap((updatedUser) => {
+          this.userToUpdate.next(updatedUser)
+        })
+      )
   }
 
-  deleteUserById(id: string): Observable<boolean> {
+  setUpdatedUser(updatedUser: Users) {
+    this.userToUpdate.next(updatedUser)
+  }
+
+  getUpdatedUser(): Observable<Users>{
+    return this.userToUpdate.asObservable();
+  }
+
+  deleteUserById(id: number): Observable<boolean> {
     return this.http.delete(`${this.baseUrl}/users/${id}`)
       .pipe(
-        map(resp => true),
-        catchError(err => of(false))
+        map(() => true),
+        catchError(() => of(false))
       )
   }
 
