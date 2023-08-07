@@ -1,0 +1,36 @@
+<div class="text-center">
+  <h1>Buscador usando Api</h1>
+  <hr />
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4 col-md-6">
+      <button class="btn btn-dark py-3 px-5"
+      routerLink="/searchOnType/searcher/by-artist"
+      routerLinkActive="active"
+      >Artista</button>
+    </div>
+    <div class="col-lg-4 col-md-6 ">
+      <button class="btn btn-dark py-3 px-5"
+      routerLink="/searchOnType/searcher/by-song"
+      routerLinkActive="active"
+      >Canción</button>
+    </div>
+    <div class="col-lg-4 col-md-6 ">
+      <button class="btn btn-dark py-3 px-5"
+      routerLink="/searchOnType/searcher/by-album"
+      routerLinkActive="active"
+      >Álbum</button>
+    </div>
+
+
+  </div>
+  <input type="text"
+    [placeholder]="placeholder"
+    class="form-control col-12 my-5"
+    [value]="initialValue"
+    (keyup)="onKeyPress(txtInput.value)"
+    #txtInput
+    >
+
+  <list-page />
+</div>

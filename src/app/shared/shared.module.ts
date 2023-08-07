@@ -5,8 +5,6 @@ import { CardsComponent } from './components/cards/cards.component';
 import { RouterModule } from '@angular/router';
 
 
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
