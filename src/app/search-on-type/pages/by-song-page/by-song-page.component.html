@@ -1,1 +1,12 @@
-<p>by-song-page works!</p>
+<h2>Búsqueda por canción</h2>
+
+<div>
+  <search-shared-searchbox
+    placeholder="Buscar por canción"
+    (onDebounce)="searchBySong($event)"
+  />
+
+  <div *ngFor="let item of music">
+    <p class="text-start">{{ item.trackName }}</p>
+  </div>
+</div>

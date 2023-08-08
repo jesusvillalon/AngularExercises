@@ -1,36 +1,30 @@
 <div class="text-center">
-  <h1>Buscador usando Api</h1>
+  <h1>Buscador de Música</h1>
   <hr />
 
-  <div class="row d-flex justify-content-center">
+  <ul class="row d-flex justify-content-center mb-3">
     <div class="col-lg-4 col-md-6">
-      <button class="btn btn-dark py-3 px-5"
+      <li class="btn btn-dark py-3 px-5"
       routerLink="/searchOnType/searcher/by-artist"
       routerLinkActive="active"
-      >Artista</button>
+      >Artista</li>
     </div>
     <div class="col-lg-4 col-md-6 ">
-      <button class="btn btn-dark py-3 px-5"
+      <li class="btn btn-dark py-3 px-5"
       routerLink="/searchOnType/searcher/by-song"
       routerLinkActive="active"
-      >Canción</button>
+      >Canción</li>
     </div>
     <div class="col-lg-4 col-md-6 ">
-      <button class="btn btn-dark py-3 px-5"
+      <li class="btn btn-dark py-3 px-5"
       routerLink="/searchOnType/searcher/by-album"
       routerLinkActive="active"
-      >Álbum</button>
+      >Álbum</li>
     </div>
+  </ul>
 
-
+  <div >
+    <router-outlet></router-outlet>
   </div>
-  <input type="text"
-    [placeholder]="placeholder"
-    class="form-control col-12 my-5"
-    [value]="initialValue"
-    (keyup)="onKeyPress(txtInput.value)"
-    #txtInput
-    >
 
-  <list-page />
 </div>

@@ -1,1 +1,12 @@
-<p>by-album-page works!</p>
+<h2>Búsqueda por álbum</h2>
+
+<div>
+  <search-shared-searchbox
+    placeholder="Buscar por álbum"
+    (onDebounce)="searchByAlbum($event)"
+  />
+
+  <div *ngFor="let item of music">
+    <p class="text-start">{{ item.collectionName  }}</p>
+  </div>
+</div>

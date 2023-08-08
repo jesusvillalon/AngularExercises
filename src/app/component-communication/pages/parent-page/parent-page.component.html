@@ -19,13 +19,13 @@
     <div>
       <button
       (click)="showServiceMessage()"
-      class="btn btn-primary ">Use Service</button>
+      class="btn btn-dark ">Use Service</button>
       <button
       (click)="showInputMessage()"
-      class="btn btn-primary m-3">Use Input Property</button>
+      class="btn btn-dark m-3">Use Input Property</button>
       <button
       (click)="showObservableMessage()"
-      class="btn btn-primary">Use Observable</button>
+      class="btn btn-dark">Use Observable</button>
     </div>
   </div>
   <child-page [message]="sendMessage" (sendChildMessage)="receivedChildMessage($event)" />

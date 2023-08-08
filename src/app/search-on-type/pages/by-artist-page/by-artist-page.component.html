@@ -1,1 +1,12 @@
-<p>by-artist-page works!</p>
+<h2>Búsqueda por artista</h2>
+
+<div>
+  <search-shared-searchbox
+    placeholder="Buscar por artista"
+    (onDebounce)="searchByArtist($event)"
+  />
+
+  <div *ngFor="let item of music">
+    <p class="text-start">{{ item.artistName }}</p>
+  </div>
+</div>
