@@ -1,19 +1,29 @@
 <div class="row my-5">
-<h4>Controlador</h4>
+  <h4>Controlador</h4>
 
-<div class="col-6 mt-2">
-<select class="form-select selectInput">
-  <option value="">Rojo</option>
-  <option value="">Amarillo</option>
-  <option value="">Verde</option>
-</select>
-</div>
-
-<div class="col-6 mt-2">
-  <div class="input-group-text checkboxInput">
-    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"> Encendido/Apagado
+  <div class="col-6 mt-2">
+    <select class="form-select selectInput"
+    (change)="onSelectedColor($event)"
+    >
+      <option value="rojo">Rojo</option>
+      <option value="amarillo">Amarillo</option>
+      <option value="verde">Verde</option>
+    </select>
   </div>
 
+  <div class="col-6 mt-2">
+    <div class="input-group-text checkboxInput">
+      <input
+      (click)="onIsActivated()"
+        class="form-check-input mt-0"
+        type="checkbox"
+       [(ngModel)]="isActivated"
+        aria-label="Checkbox for following text input"
+      />
+      <label class="form-check-label" for="flexCheckDefault">
+        {{isActivated ? "Encendido" : "Apagado"}}
+      </label>
+    </div>
+  </div>
 </div>
 
-</div>

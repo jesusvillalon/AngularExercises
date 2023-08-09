@@ -1,7 +1,14 @@
-<div class="body">
+<div class="row d-flex flex-column body">
   <div class="traficLight">
-    <div class="red light mb-2"></div>
-    <div class="yellow light mb-2"></div>
-    <div class="green light"></div>
+    <div class="text-center red light mb-2"
+    [ngClass]="{'active': isActivated && selectedColor === 'rojo'}"
+    ></div>
+    <div class="text-center yellow light mb-2"
+    [ngClass]="{'active': isActivated && selectedColor === 'amarillo'}"
+    ></div>
+    <div class="text-center green light"
+    [ngClass]="{'active': isActivated && selectedColor === 'verde'}"
+    ></div>
   </div>
+  <div class="bar"></div>
 </div>
