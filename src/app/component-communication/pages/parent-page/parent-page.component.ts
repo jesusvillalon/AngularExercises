@@ -8,30 +8,25 @@ import { ParentChildService } from '../../services/parent-child.service';
 })
 export class ParentPageComponent {
   public sendMessage: string = '';
-
-  // mensaje del output
   public receivedMessage: string = '';
 
   constructor(private parentChildService: ParentChildService) {
-    this.parentChildService
-      .getParentObsMessage()
-      .subscribe((obsMessage: string) => {
-        this.sendMessage = obsMessage;
-      });
-
-    this.receivedMessage = this.parentChildService.getServiceMessage();
+    this.parentChildService.getChildObsMessage()
+    .subscribe((obsMessage: string) => {
+      this.receivedMessage = obsMessage;
+    });
   }
 
   showServiceMessage() {
-   this.parentChildService.sendParentMessage('PARENT USING SERVICE');
+   this.parentChildService.setParentMessage('PARENT USING SERVICE');
   }
 
   showInputMessage() {
     this.sendMessage = 'PARENT USING INPUT PROPERTY';
   }
+
   showObservableMessage() {
-    // Setear el mensaje y luego obtenerlo mediante el subscribe.
-    this.parentChildService.sendParentMessage('PARENT USING SUBJECT');
+    this.parentChildService.setParentMessage('PARENT USING SUBJECT');
   }
 
   // Output

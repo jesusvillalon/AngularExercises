@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', // Ruta vacía, es la página principal
+    path: '',
     pathMatch: 'full',
-    redirectTo: 'main', // Redirige a la ruta que contiene la vista principal con todas las cards
+    redirectTo: 'main',
   },
   {
     path: "displayHide",
@@ -49,7 +49,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

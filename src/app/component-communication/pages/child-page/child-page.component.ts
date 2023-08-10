@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ParentChildService } from '../../services/parent-child.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'child-page',
@@ -14,19 +13,16 @@ export class ChildPageComponent {
   @Output()
   public sendChildMessage: EventEmitter<string> = new EventEmitter();
 
-  private subscription?: Subscription;
 
   constructor(private parentChildService: ParentChildService) {
-    this.subscription = this.parentChildService
-    .getChildObsMessage()
+    this.parentChildService.getParentObsMessage()
     .subscribe((obsMessage: string) => {
       this.message = obsMessage;
     });
-
   }
 
   showServiceMessage() {
-    this.parentChildService.sendChildMessage('CHILD USING SERVICE');
+    this.parentChildService.setChildMessage('CHILD USING SERVICE');
   }
 
   showOutputMessage(): void {
@@ -34,7 +30,7 @@ export class ChildPageComponent {
   }
 
   showChildObservableMessage() {
-    this.parentChildService.sendChildMessage('CHILD USING SUBJECT');
+    this.parentChildService.setChildMessage('CHILD USING SUBJECT');
 
   }
 }

@@ -3,32 +3,25 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ParentChildService {
-  private messageFromService: string = '';
 
-  private observableParentMessage = new Subject<string>();
-  private observableChildMessage = new Subject<string>();
 
-  sendServiceMessage(message: string) {
-    this.messageFromService = message
+  private parentMessage = new Subject<string>();
+  private childMessage = new Subject<string>();
+
+
+  setParentMessage(message: string) {
+    this.parentMessage.next(message);
   }
 
-  getServiceMessage(): string {
-    return this.messageFromService;
-  }
-
-  sendParentMessage(message: string) {
-    this.observableParentMessage.next(message);
-  }
-
-  sendChildMessage(message: string) {
-    this.observableChildMessage.next(message);
+  setChildMessage(message: string) {
+    this.childMessage.next(message);
   }
 
   getParentObsMessage(): Observable<string> {
-    return this.observableParentMessage.asObservable();
+    return this.parentMessage.asObservable();
   }
 
   getChildObsMessage(): Observable<string> {
-    return this.observableChildMessage.asObservable();
+    return this.childMessage.asObservable();
   }
 }
