@@ -29,6 +29,16 @@
       "isSubscribed": false,
       "country": "Canada",
       "city": "Ottawa"
+    },
+    {
+      "name": "Juan García",
+      "password": "juangarcia",
+      "confirmPassword": "juangarcia",
+      "email": "juan@garcia.com",
+      "isSubscribed": true,
+      "country": "Argentina",
+      "city": "Buenos Aires",
+      "id": 4
     }
   ]
 }

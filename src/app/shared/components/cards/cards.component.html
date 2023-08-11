@@ -2,8 +2,7 @@
   <div class="row d-flex justify-content-center  m-3">
     <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 text-center" *ngFor="let card of cardMenu">
       <div class="card" style="width: 19rem">
-        <!-- TODO: Insertar imágenes de los ejercicios -->
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <img [src]=[card.img] class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title mb-5"><strong>{{card.title}}</strong></h5>
           <a
