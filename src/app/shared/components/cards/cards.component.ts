@@ -49,9 +49,7 @@ export class CardsComponent {
     { title: 'Counter',
       route: './counter',
       exercise: 7,
-      img: ''
-      // TODO: Insertar imagen ejercicio 7 cuando esté hecho
+      img: '../assets/images/exerciseImages/Ejercicio7.png'
      },
   ];
-  // Agregar luego las rutas que hacen falta para que se vea el ejercicio!!!
 }

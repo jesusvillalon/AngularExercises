@@ -1,4 +1,4 @@
 # AngularExercises
 
 ## Run Crud Backend
-- npm run backend-crud
+- Iniciar el comando ```npm run backend-crud``` para poder usar bien el ejercicio del CRUD.

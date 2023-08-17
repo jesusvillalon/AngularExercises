@@ -1,0 +1,67 @@
+<h1>Counter</h1>
+<hr />
+<div class="d-flex justify-content-center p-0">
+  <div class="d-flex justify-content-center flex-column">
+    <p class="font-monospace text-center">{{ value }}</p>
+
+    <div class="setupButtons">
+      <h5>Setup</h5>
+      <div class="row mb-2">
+        <div class="col-md-4 col-sm-12">
+          <button class="btn btn-dark py-3 px-5" (click)="isStarted()">
+            Start
+          </button>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <button class="btn btn-dark py-3 px-5" (click)="isPaused()">
+            Pause
+          </button>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <button class="btn btn-dark py-3 px-5" (click)="resetCounter()">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="countButtons mt-4">
+      <h5>Count</h5>
+      <div class="row justify-content-around">
+        <div class="col-md-6 col-sm-12 mb-2">
+          <button
+            class="btn btn-dark btn-block py-3 px-5"
+            (click)="countingUp()"
+          >
+            Count Up
+          </button>
+        </div>
+        <div class="col-md-6 col-sm-12 mb-2">
+          <button
+            class="btn btn-dark btn-block py-3 px-5"
+            (click)="countingDown()"
+          >
+            Count Down
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="setTo d-flex flex-column my-4">
+      <label>Set to</label>
+      <input type="number" class="form-control" [(ngModel)]="startNumber" />
+    </div>
+
+    <div class="step d-flex flex-column">
+      <label>Step</label>
+      <div>
+        <input
+          type="number"
+          class="form-control mb-4"
+          [(ngModel)]="stepNumber"
+        />
+        <pre></pre>
+      </div>
+    </div>
+  </div>
+</div>
