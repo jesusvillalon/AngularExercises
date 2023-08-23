@@ -11,14 +11,15 @@ export class ParentPageComponent {
   public receivedMessage: string = '';
 
   constructor(private parentChildService: ParentChildService) {
-    this.parentChildService.getChildObsMessage()
-    .subscribe((obsMessage: string) => {
-      this.receivedMessage = obsMessage;
-    });
+    this.parentChildService
+      .getChildObsMessage()
+      .subscribe((obsMessage: string) => {
+        this.receivedMessage = obsMessage;
+      });
   }
 
   showServiceMessage() {
-   this.parentChildService.setParentMessage('PARENT USING SERVICE');
+    this.parentChildService.setParentMessage('PARENT USING SERVICE');
   }
 
   showInputMessage() {

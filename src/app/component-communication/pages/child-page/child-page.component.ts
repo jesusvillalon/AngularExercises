@@ -13,12 +13,12 @@ export class ChildPageComponent {
   @Output()
   public sendChildMessage: EventEmitter<string> = new EventEmitter();
 
-
   constructor(private parentChildService: ParentChildService) {
-    this.parentChildService.getParentObsMessage()
-    .subscribe((obsMessage: string) => {
-      this.message = obsMessage;
-    });
+    this.parentChildService
+      .getParentObsMessage()
+      .subscribe((obsMessage: string) => {
+        this.message = obsMessage;
+      });
   }
 
   showServiceMessage() {
@@ -31,6 +31,5 @@ export class ChildPageComponent {
 
   showChildObservableMessage() {
     this.parentChildService.setChildMessage('CHILD USING SUBJECT');
-
   }
 }

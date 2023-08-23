@@ -39,6 +39,16 @@
       "country": "Argentina",
       "city": "Buenos Aires",
       "id": 4
+    },
+    {
+      "name": "Francisco Pérez",
+      "password": "francisco",
+      "confirmPassword": "francisco",
+      "email": "francisco@google.com",
+      "isSubscribed": null,
+      "country": "Spain",
+      "city": "Madrid",
+      "id": 5
     }
   ]
 }

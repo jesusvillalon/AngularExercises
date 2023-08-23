@@ -1,10 +1,10 @@
 <div class="crud">
   <div class="row">
-    <!-- Formulario de Registro -->
+    <!-- Form -->
   <div class="col-lg-4 col-md-12 col-sm-12" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <h2>Formulario de Registro</h2>
     <form  autocomplete="off">
-      <!-- Nombre Usuario -->
+      <!-- User name -->
       <div class="mb-3">
         <label class="col-form-label">Nombre de usuario</label>
         <div class="">
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <!-- Confirm Password -->
+      <!-- Confirm password -->
       <div class="mb-3">
         <label class="col-form-label">Confirmación Contraseña</label>
         <div class="">
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <!-- Switches -->
+      <!-- Switch subscription -->
       <div class="mb-3">
         <label class="col-form-label"></label>
         <div class="">
@@ -96,7 +96,7 @@
         </div>
       </div>
 
-      <!-- Pais -->
+      <!-- Country -->
       <div class="mb-3">
         <label class="col-form-label">País</label>
         <div class="">
@@ -112,7 +112,7 @@
         </div>
       </div>
 
-      <!-- Ciudad -->
+      <!-- City -->
       <div class="mb-3">
         <label class="col-form-label">Ciudad</label>
         <div class="">
@@ -141,7 +141,7 @@
     </form>
   </div>
 
-  <!-- Tabla -->
+  <!-- Table -->
   <div class="col-lg-8 col-md-12 col-sm-12" >
     <h2>Usuarios</h2>
     <table-page />

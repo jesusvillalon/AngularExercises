@@ -51,7 +51,6 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validatorsService: ValidatorsService,
-    // private emailValidatorService: EmailValidatorService,
     private usersService: UsersService
   ) {}
 

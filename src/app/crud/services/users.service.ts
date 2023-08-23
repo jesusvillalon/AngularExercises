@@ -18,12 +18,6 @@ export class UsersService {
     return this.http.get<Users[]>(`${this.baseUrl}/users`);
   }
 
-  getUserById(id: string): Observable<Users | undefined> {
-    return this.http.get<Users>(`${this.baseUrl}/users/${id}`)
-      .pipe(catchError((error) => of(undefined)));
-  }
-
-
   addUser(user: Users): Observable<Users> {
     return this.http.post<Users>(`${this.baseUrl}/users`, user)
       .pipe(
