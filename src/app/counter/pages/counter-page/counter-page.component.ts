@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CounterService } from '../../service/counter.service';
 
@@ -7,7 +7,7 @@ import { CounterService } from '../../service/counter.service';
   templateUrl: './counter-page.component.html',
   styleUrls: ['./counter-page.component.css'],
 })
-export class CounterPageComponent implements OnDestroy {
+export class CounterPageComponent {
   public counter: boolean = false;
   public value: number = 0;
   public startNumber: number = 0;
@@ -55,9 +55,5 @@ export class CounterPageComponent implements OnDestroy {
 
   countingDown() {
     this.value--;
-  }
-
-  ngOnDestroy(): void {
-    this.counterSubscription.unsubscribe();
   }
 }
