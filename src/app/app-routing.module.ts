@@ -43,6 +43,11 @@ const routes: Routes = [
       .then(m => m.CounterModule)
   },
   {
+    path: 'todoList',
+    loadChildren: () => import('./to-do-list/to-do-list.module')
+      .then(m => m.ToDoListModule)
+  },
+  {
     path: "**",
     redirectTo: "main"
   },

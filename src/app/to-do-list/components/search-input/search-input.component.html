@@ -1,0 +1,12 @@
+<div class="input-group input-group-lg mb-4">
+  <input
+    #taskInput
+    type="text"
+    class="form-control"
+    aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-lg"
+    placeholder="Nueva nota"
+    [(ngModel)]="newTaskTitle"
+    (keydown.enter)="addTask(taskInput.value)"
+  />
+</div>
