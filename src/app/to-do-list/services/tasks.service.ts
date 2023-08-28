@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Tasks } from '../interfaces/tasks.interface';
+import { SubTasks, Tasks } from '../interfaces/tasks.interface';
 
 
 @Injectable({
@@ -45,6 +45,7 @@ export class TasksService {
     );
     this.tasks.next(updatedTasks);
     this.updateLocalStorage(updatedTasks);
+    this.saveTaskCompleteStatus();
   }
 
   deleteTasks(taskId: number) {
@@ -53,10 +54,22 @@ export class TasksService {
       task.id !== taskId);
     this.tasks.next(updatedTasks);
     this.updateLocalStorage(updatedTasks)
+    this.removeTaskCompleteStatus(taskId)
   }
 
+  private saveTaskCompleteStatus() {
+    const completedTasks = this.tasks.value
+      .filter(task => task.completed)
+      .map(task => task.id);
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+  }
 
-
-
+  private removeTaskCompleteStatus(id: number) {
+    const completedTasks = JSON.parse(
+      localStorage.getItem('completedTasks') || '[]'
+    ) as number[];
+    const updatedCompletedTasks = completedTasks.filter(taskId => taskId !== id);
+    localStorage.setItem('completedTasks', JSON.stringify(updatedCompletedTasks));
+  }
 
 }

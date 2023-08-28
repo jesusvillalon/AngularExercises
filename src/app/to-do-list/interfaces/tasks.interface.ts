@@ -2,13 +2,14 @@ export interface Tasks {
   id: number;
   taskTitle: string;
   subTasks: SubTasks[];
-  completed: boolean
+  completed: boolean;
   editing: boolean;
+
 }
 
 export interface SubTasks {
   id: number;
   title: string;
-  completed: boolean;
+  completedSubtask: boolean;
   editSubtask: boolean;
 }

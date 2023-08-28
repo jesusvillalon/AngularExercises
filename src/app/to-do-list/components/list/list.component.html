@@ -12,10 +12,12 @@
         <!-- Titulo de la nota -->
         <div class="d-flex justify-content-between align-items-center">
           <ng-container *ngIf="!task.editing">
-            <h5 class="card-title fw-bold mt-1">{{ task.taskTitle | titlecase }}</h5>
+            <h5 class="card-title fw-bold mt-1">
+              {{ task.taskTitle | titlecase }}
+            </h5>
           </ng-container>
           <input
-            class=" titleInput"
+            class="titleInput"
             placeholder="Ingrese tarea..."
             *ngIf="task.editing"
             [(ngModel)]="task.taskTitle"
@@ -31,35 +33,42 @@
         <!-- Subtareas -->
         <div *ngFor="let subtask of task.subTasks">
           <div class="checkbox-wrapper-11">
-            <input id="01-11" type="checkbox" name="r" value="2"
-            [checked]="subtask.completed"
-            (change)="subtask.completed = !subtask.completed"
+            <input
+              id="{{ subtask.id }}"
+              type="checkbox"
+              [checked]="subtask.completedSubtask"
+              (change)="isSubtaskCompleted(subtask)"
             />
-            <label for="01-11">{{ subtask.title }}</label>
+            <label for="{{ subtask.id }}">{{ subtask.title }}</label>
           </div>
-
-          <input class="mt-2 subTaskInput" placeholder="Ingrese tarea..."
-          [(ngModel)]="newSubtask"
-          *ngIf="subtask.editSubtask"/>
         </div>
       </div>
-
+      <div class="px-2" *ngIf="selectedTask === task && !addingSubtask">
+        <input
+          class="mt-2 subTaskInput"
+          placeholder="Ingrese tarea..."
+          [(ngModel)]="newSubtask"
+        />
+      </div>
       <!-- Botones -->
       <div class="d-flex justify-content-between mb-1 p-2">
         <div class="bg-dark input-group-text checkboxInput">
           <input
             class="form-check-input mt-0 me-2"
             type="checkbox"
-            aria-label="Checkbox for following text input"
             [checked]="task.completed"
             (change)="isCompleted(task)"
           />
-          <label class="form-check-label" for="flexCheckDefault"> Done </label>
+          <label class="form-check-label" for="flexCheckDefault">
+            Completado
+          </label>
         </div>
-        <div class="buttons" >
-          <button class="btn btn-dark me-2 input-group-text checkboxInput"
-          (click)="addSubtask(task)">
-            {{ task.editing ? "✓" : " &#128932;" }}
+        <div class="buttons">
+          <button
+            class="btn btn-dark me-2 input-group-text checkboxInput"
+            (click)="isAddingSubtask(task)"
+          >
+            {{ addingSubtask ? " &#128932;" : "✓" }}
           </button>
 
           <button

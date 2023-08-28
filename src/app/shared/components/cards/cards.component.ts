@@ -54,7 +54,7 @@ export class CardsComponent {
     { title: 'ToDo-List',
       route: './todoList/toDoPage',
       exercise: 8,
-      img: ''
+      img: '../assets/images/exerciseImages/Ejercicio8.png'
      },
   ];
 }
